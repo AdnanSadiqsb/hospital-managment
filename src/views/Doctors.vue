@@ -1,6 +1,6 @@
 <template>
   <div>
-    <workers-vue></workers-vue>
+    <Doctors></Doctors>
   </div>
 </template>
 
@@ -12,7 +12,7 @@ import img4 from "@/assets/img/team-3.jpg";
 import img5 from "@/assets/img/team-2.jpg";
 import img6 from "@/assets/img/team-4.jpg";
 import useApi from "../supportElements/useAPI";
-import WorkersVue from "../components/models/Workers.vue";
+import Doctors from "../components/models/Doctors.vue";
 const api = useApi();
 export default {
   name: "authors-table",
@@ -52,7 +52,7 @@ export default {
     };
   },
   components: {
-    WorkersVue,
+    Doctors,
   },
   methods: {
     closeUserModalHandler() {
