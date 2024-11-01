@@ -10,7 +10,7 @@
         "
       >
         <h6>Doctors</h6>
-        <soft-button-vue @click="openCustomModal()"
+        <soft-button-vue @click="openCustomModal"
           ><slot>Add Doctor</slot></soft-button-vue
         >
       </div>
@@ -23,41 +23,31 @@
                 <th
                   class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                 >
-                  Doc Name
+                  Name
                 </th>
                 <th
                   class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
                 >
-                  Specialization
+                  Function
                 </th>
                 <th
                   class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                 >
-                  Room No
+                  Status
                 </th>
                 <th
                   class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                 >
-                  Fee
-                </th>
-                <th
-                  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                >
-                  Lab share
-                </th>
-                <th
-                  class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                >
-                  OPD share
+                  Employed
                 </th>
                 <th class="text-secondary opacity-7"></th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in managersData" :key="item.id">
+              <tr v-for="item in filteredWorkers" :key="item.id">
                 <td>
                   <div class="d-flex px-2 py-1">
-                    <!-- <div>
+                    <div>
                       <soft-avatar
                         :img="item.avatar ? item.avatar : img2"
                         size="sm"
@@ -65,12 +55,9 @@
                         class="me-3"
                         alt="user1"
                       />
-                    </div> -->
+                    </div>
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">
-                        {{ item?.first_name ? item?.first_name : "" }}
-                        {{ item.last_name ? item.last_name : "" }}
-                      </h6>
+                      <h6 class="mb-0 text-sm">{{ item.username }}</h6>
                       <p class="text-xs text-secondary mb-0">
                         {{ item.email }}
                       </p>
@@ -78,35 +65,22 @@
                   </div>
                 </td>
                 <td>
-                  <p class="text-xs font-weight-bold mb-0">
-                    {{ item.specialization }}
-                  </p>
-                  <p class="text-xs text-secondary mb-0">Specialization</p>
+                  <p class="text-xs font-weight-bold mb-0">{{ item.role }}</p>
+                  <p class="text-xs text-secondary mb-0">Organization</p>
                 </td>
                 <td class="align-middle text-center text-sm">
                   <soft-badge color="success" variant="gradient" size="sm">{{
-                    item.room_no ? item.room_no : ""
+                    item.is_active ? "Active" : "In-Active"
                   }}</soft-badge>
                 </td>
                 <td class="align-middle text-center">
                   <span class="text-secondary text-xs font-weight-bold">{{
-                    item.consultation_fee ? item.consultation_fee : ""
-                  }}</span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-bold">{{
-                    item.lab_share ? item.lab_share : ""
-                  }}</span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-bold">{{
-                    item.opd_share ? item.opd_share : ""
+                    item.date_joined.slice(0, 10)
                   }}</span>
                 </td>
                 <td class="align-middle">
                   <a
                     href="javascript:;"
-                    @click="openCustomModal(item.id)"
                     class="text-secondary font-weight-bold text-xs"
                     data-toggle="tooltip"
                     data-original-title="Edit user"
@@ -123,28 +97,27 @@
     <!-- add manager modal -->
     <custom-modal ref="customModal" :title="modalTitle">
       <!-- Custom content for the modal -->
-      <form id="worker-form" @submit.prevent="addDoctorManger">
-        <div class="d-flex gap-3">
-          <div>
-            <label for="inputField">First name</label>
-            <input
-              class="inputField"
-              type="text"
-              placeholder="First name"
-              v-model="doctorDetails.first_name"
-            />
-          </div>
-          <div>
-            <label for="inputField">Last name</label>
-            <input
-              class="inputField"
-              type="text"
-              placeholder="Last name"
-              v-model="doctorDetails.last_name"
-            />
-          </div>
+      <form id="worker-form" @submit.prevent="addWorkerManger">
+        <div>
+          <label for="inputField">Doctor name</label>
+          <input
+            class="inputField"
+            type="text"
+            placeholder="First name"
+            v-model="userData.username"
+          />
         </div>
-        <!-- <div>
+
+        <div>
+          <label for="inputField">Email</label>
+          <input
+            class="inputField"
+            v-model="userData.email"
+            type="email"
+            placeholder="Email"
+          />
+        </div>
+        <div>
           <label for="inputField">Image</label>
           <input
             class="inputField"
@@ -153,80 +126,11 @@
             @change="handleFileChange"
             size="md"
           />
-        </div> -->
-        <div>
-          <label for="inputField">Email</label>
-          <input
-            class="inputField"
-            v-model="doctorDetails.email"
-            type="email"
-            placeholder="Email"
-          />
         </div>
         <div>
-          <label for="inputField">Phone</label>
-          <input
-            class="inputField"
-            type="text"
-            placeholder="Password"
-            v-model="doctorDetails.password"
-          />
-        </div>
-        <div>
-          <label for="inputField">Specialization</label>
-          <input
-            class="inputField"
-            v-model="doctorDetails.specialization"
-            type="text"
-            placeholder="specialization"
-          />
-        </div>
-        <div class="d-flex gap-3">
-          <div>
-            <label for="inputField">Room no</label>
-            <input
-              class="inputField"
-              v-model="doctorDetails.room_no"
-              type="text"
-              placeholder="Room no"
-            />
-          </div>
-          <div>
-            <label for="inputField">Consultation fee</label>
-            <input
-              class="inputField"
-              v-model="doctorDetails.consultation_fee"
-              type="text"
-              placeholder="Consultation fee"
-            />
-          </div>
-        </div>
-
-        <div class="d-flex gap-3">
-          <div>
-            <label for="inputField">Lab share</label>
-            <input
-              class="inputField"
-              v-model="doctorDetails.lab_share"
-              type="text"
-              placeholder="Lab share"
-            />
-          </div>
-
-          <div>
-            <label for="inputField">OPD share</label>
-            <input
-              class="inputField"
-              v-model="doctorDetails.opd_share"
-              type="text"
-              placeholder="OPD share"
-            />
-          </div>
-        </div>
-        <!-- <div>
-          <label for="inputField">Role</label>
-          <select class="inputField" v-model="doctorDetails.role">
-            <option value="" selected>Select Role</option>
+          <label for="inputField">Gender</label>
+          <select class="inputField" v-model="userData.role">
+            <option value="" selected>Select Gender</option>
             <option
               class="dropdownOptions"
               v-for="role in roles"
@@ -236,11 +140,21 @@
               {{ role.name }}
             </option>
           </select>
-        </div> -->
+        </div>
+
+        <div>
+          <label for="inputField">Password</label>
+          <input
+            class="inputField"
+            type="password"
+            placeholder="Password"
+            v-model="userData.password"
+          />
+        </div>
       </form>
       <template v-slot:actions>
         <soft-button-vue :loading="loading" form="worker-form" type="submit">
-          {{ this.doctorDetails.id ? "Update Doctor" : "Add Doctor" }}
+          Add Worker
         </soft-button-vue>
       </template>
     </custom-modal>
@@ -250,7 +164,7 @@
 <script>
 // import axios from "axios";
 import CustomModal from "@/views/components/CustomModal.vue";
-// import SoftAvatar from "@/components/SoftAvatar.vue";
+import SoftAvatar from "@/components/SoftAvatar.vue";
 import SoftBadge from "@/components/SoftBadge.vue";
 // import img1 from "@/assets/img/team-2.jpg";
 import img1 from "@/assets/img/team-1.jpg";
@@ -267,7 +181,7 @@ export default {
   name: "authors-table",
   data() {
     return {
-      modalTitle: "Doctor Info",
+      modalTitle: "Add New Worker",
       img1,
       img2,
       img3,
@@ -276,99 +190,49 @@ export default {
       img6,
       inputFieldValue: "",
       loading: false,
-      selectedDocId: "",
-      managersData: [
-        {
-          id: 2,
-          first_name: "mohsin",
-          last_name: "mumtaz",
-          profile_image: null,
-          specialization: "surgone",
-          room_no: "1",
-          consultation_fee: 1000.0,
-          lab_share: 20.0,
-          opd_share: 30.0,
-        },
-      ],
-      roles: [
-        {
-          id: 1,
-          name: "Super Admin",
-          value: "superAdmin",
-        },
-        {
-          id: 2,
-          name: "Doctor",
-          value: "doctor",
-        },
-        {
-          id: 3,
-          name: "User",
-          value: "user",
-        },
-      ],
-      doctorDetails: {
+      managersData: [],
+      userData: {
+        username: "",
         email: "",
-        profile_image: "",
-        first_name: "",
-        last_name: "",
-        phoneNo: "",
-        role: "",
-        specialization: "",
-        room_no: "",
-        consultation_fee: 0,
-        lab_share: 0,
-        opd_share: 0,
-        user: 0,
+        password: "",
+        status: true,
+        role: "worker",
+        avatar: File | null | String,
       },
     };
   },
   components: {
-    // SoftAvatar,
+    SoftAvatar,
     SoftBadge,
     CustomModal,
     SoftButtonVue,
   },
   methods: {
     closeUserModalHandler() {
-      (this.doctorDetails.username = ""),
-        (this.doctorDetails.email = ""),
-        (this.doctorDetails.password = ""),
-        (this.doctorDetails.status = ""),
-        (this.doctorDetails.role = "");
+      (this.userData.username = ""),
+        (this.userData.email = ""),
+        (this.userData.password = ""),
+        (this.userData.status = ""),
+        (this.userData.role = "");
     },
 
-    openCustomModal(id = "") {
-      this.getDoctorDetailHandler(id);
+    openCustomModal() {
       this.closeUserModalHandler();
       this.$refs.customModal.openModal();
     },
-
     saveAndClose() {
       this.$refs.customModal.closeModal();
     },
 
     handleFileChange(event) {
-      this.doctorDetails.profile_image = event.target.files[0];
+      this.userData.avatar = event.target.files[0];
     },
 
-    async getDoctorDetailHandler(id = "") {
+    async getManagershandler() {
       try {
-        const response = await api.get(`/api/doctors/${id}/`, {});
-        this.doctorDetails = response.data;
-        console.log("doctors data", this.doctorDetails);
-      } catch (err) {
-        console.log(err);
-      } finally {
-        this.loading = false;
-      }
-    },
-
-    async getDoctorsHandler() {
-      try {
-        const response = await api.get("/api/doctors/", {});
+        const response = await api.get("/api/users/", {});
         this.managersData = response.data;
-        console.log("doctors data", this.managersData);
+        console.log("data", this.managersData);
       } catch (err) {
         console.log(err);
       } finally {
@@ -376,31 +240,19 @@ export default {
       }
     },
 
-    async addDoctorManger() {
+    async addWorkerManger() {
       try {
         this.loading = true;
-        this.doctorDetails.role = "doctor";
-        let formData = convertToFormData(this.doctorDetails, ["profile_image"]);
-        if (this.doctorDetails.id) {
-          const response = await api.patch(
-            `/api/doctors/${this.doctorDetails.id}/`,
-            formData
-          );
-          this.$notify({
-            type: "success",
-            title: "Doctor updated",
-            text: "Doctor updated successfully",
-          });
-        } else {
-          const response = await api.post("/api/doctors/", formData);
-          this.$notify({
-            type: "success",
-            title: "Doctor Added",
-            text: "Doctor added successfully",
-          });
-        }
+        this.userData.role = "worker";
+        let formData = convertToFormData(this.userData, ["image"]);
+        const response = await api.post("/api/users/", formData);
+        this.$notify({
+          type: "success",
+          title: "Worker Added",
+          text: "Worker added succesfuly",
+        });
         this.saveAndClose();
-        this.getDoctorsHandler();
+        this.getManagershandler();
         this.loading = false;
         console.log(response);
       } catch (err) {
@@ -409,7 +261,7 @@ export default {
         this.$notify({
           type: "error",
           title: "Something went wrong",
-          text: "Enter the information carefully and try again",
+          text: "Enter the information carefuly and try again",
         });
       } finally {
         this.loading = false;
@@ -417,7 +269,7 @@ export default {
     },
   },
   mounted() {
-    this.getDoctorsHandler();
+    this.getManagershandler();
   },
   computed: {
     filteredWorkers() {
