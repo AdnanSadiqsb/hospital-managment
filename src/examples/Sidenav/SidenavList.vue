@@ -13,11 +13,6 @@
           </sidenav-collapse>
         </li>
         <li class="nav-item">
-          <!-- <sidenav-collapse navText="Tables" :to="{ name: 'Tables' }">
-            <template #icon>
-              <office />
-            </template>
-          </sidenav-collapse> -->
           <sidenav-collapse navText="Doctors" :to="{ name: 'Doctors' }">
             <template #icon>
               <office />
@@ -25,12 +20,6 @@
           </sidenav-collapse>
         </li>
         <li class="nav-item">
-          <!-- <sidenav-collapse navText="Billing" :to="{ name: 'Billing' }">
-            <template #icon>
-              <credit-card />
-            </template>
-          </sidenav-collapse> -->
-
           <sidenav-collapse navText="Patients" :to="{ name: 'Patients' }">
             <template #icon>
               <credit-card />
@@ -39,12 +28,6 @@
         </li>
 
         <li class="nav-item">
-          <!-- <sidenav-collapse navText="Billing" :to="{ name: 'Billing' }">
-            <template #icon>
-              <credit-card />
-            </template>
-          </sidenav-collapse> -->
-
           <sidenav-collapse navText="Workers" :to="{ name: 'Workers' }">
             <template #icon>
               <credit-card />
