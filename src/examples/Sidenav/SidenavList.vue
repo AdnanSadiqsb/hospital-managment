@@ -28,7 +28,7 @@
         </li>
 
         <li class="nav-item">
-          <sidenav-collapse navText="Workers" :to="{ name: 'Workers' }">
+          <sidenav-collapse navText="OPD" :to="{ name: 'OPD' }">
             <template #icon>
               <credit-card />
             </template>

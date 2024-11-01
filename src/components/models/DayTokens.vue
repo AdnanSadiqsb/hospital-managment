@@ -24,7 +24,7 @@
         <tbody>
           <tr v-for="rowNumber in 100" :key="rowNumber">
             <td>
-              <p class="text-xs text-secondary mb-0">{{ rowNumber }}</p>
+              <p class="text-lg text-secondary mb-0 ml-3">{{ rowNumber }}</p>
             </td>
             <td v-for="doctor in doctors" :key="doctor.id">
               <div v-if="getPatientByDoctorAndRow(doctor.id, rowNumber)" class="cu-data-box">

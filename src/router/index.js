@@ -55,8 +55,8 @@ const routes = [
     // path: "/billing",
     // name: "Billing",
     // component: Billing,
-    path: "/workers",
-    name: "Workers",
+    path: "/OPD",
+    name: "OPD",
     component: Workers,
   },
   {
