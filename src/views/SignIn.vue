@@ -163,7 +163,7 @@ export default {
         this.loading = true;
         // eslint-disable-next-line no-undef
         const response = await axios.post(
-          "https://vecel-practice.vercel.app/api/auth/login/",
+          "https://hms-nu-five.vercel.app/auth/login/",
           {
             email: this.username,
             password: this.password,

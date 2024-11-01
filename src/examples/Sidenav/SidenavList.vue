@@ -18,7 +18,7 @@
               <office />
             </template>
           </sidenav-collapse> -->
-          <sidenav-collapse navText="Projects" :to="{ name: 'Projects' }">
+          <sidenav-collapse navText="Doctors" :to="{ name: 'Doctors' }">
             <template #icon>
               <office />
             </template>
@@ -31,7 +31,7 @@
             </template>
           </sidenav-collapse> -->
 
-          <sidenav-collapse navText="Managers" :to="{ name: 'Mangers' }">
+          <sidenav-collapse navText="Patients" :to="{ name: 'Patients' }">
             <template #icon>
               <credit-card />
             </template>

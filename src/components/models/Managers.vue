@@ -38,7 +38,7 @@
                 <th
                   class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                 >
-                  Employed 
+                  Employed
                 </th>
                 <th class="text-secondary opacity-7"></th>
               </tr>
@@ -128,7 +128,7 @@
         <div>
           <label for="inputField">Email</label>
           <input
-          autocomplete="username"
+            autocomplete="username"
             class="inputField"
             v-model="userData.email"
             type="email"
@@ -146,9 +146,6 @@
             size="md"
           />
         </div>
-<<<<<<< HEAD
-
-=======
         <!-- <div>
           <label for="inputField">Role</label>
           <select class="inputField" v-model="userData.role">
@@ -163,12 +160,11 @@
             </option>
           </select>
         </div> -->
->>>>>>> 4cc34af (workers)
 
         <div>
           <label for="inputField">Password</label>
           <input
-          required
+            required
             class="inputField"
             type="password"
             placeholder="Password"
@@ -178,7 +174,7 @@
       </form>
       <template v-slot:actions>
         <soft-button-vue :loading="loading" form="manger-form" type="submit">
-          {{editModeId ? 'Save Manager':'Add Manager'}}
+          {{ editModeId ? "Save Manager" : "Add Manager" }}
         </soft-button-vue>
       </template>
     </custom-modal>
@@ -234,7 +230,7 @@ export default {
         role: "manager",
         avatar: File | null | String,
       },
-      editModeId:0
+      editModeId: 0,
     };
   },
   components: {
@@ -248,29 +244,28 @@ export default {
       (this.userData.username = ""),
         (this.userData.email = ""),
         (this.userData.password = ""),
-        (this.userData.status = "")
+        (this.userData.status = "");
     },
     showCard(userId) {
       this.showDropDown = true;
       this.selectedUserId = userId;
     },
 
-    openCustomModal(isEdit=false, manager ={}) {
+    openCustomModal(isEdit = false, manager = {}) {
       this.closeUserModalHandler();
-      if(isEdit)
-      {
-        console.log("inside is edit", isEdit)
-        this.editModeId = manager.id
-        this.modalTitle = 'Edit Manager'
-        this.userData.username = manager.username
-        this.userData.email = manager.email
-        this.userData.password = manager.password
-        this.userData.avatar = manager.avatar
-      }else{
-        this.editModeId = 0
-        this.modalTitle = 'Add Manager'
+      if (isEdit) {
+        console.log("inside is edit", isEdit);
+        this.editModeId = manager.id;
+        this.modalTitle = "Edit Manager";
+        this.userData.username = manager.username;
+        this.userData.email = manager.email;
+        this.userData.password = manager.password;
+        this.userData.avatar = manager.avatar;
+      } else {
+        this.editModeId = 0;
+        this.modalTitle = "Add Manager";
       }
-      
+
       this.$refs.customModal.openModal();
     },
     saveAndClose() {
@@ -296,16 +291,9 @@ export default {
     async addNewManger() {
       try {
         this.loading = true;
-<<<<<<< HEAD
-
-        let formData = convertToFormData(this.userData, ["avatar"]);
-       
-        const response = this.editModeId ? await api.patch(`/api/users/${this.editModeId}/`, formData) : await api.post("/api/users/", formData);
-=======
         this.userData.role = "manager";
         let formData = convertToFormData(this.userData, ["image"]);
         const response = await api.post("/api/users/", formData);
->>>>>>> 4cc34af (workers)
         this.$notify({
           type: "success",
           title: "Manager",
@@ -320,7 +308,8 @@ export default {
         this.$notify({
           type: "error",
           title: "Something went wrong",
-          text: "Enter the information carefuly and try again OR user with email already exist",
+          text:
+            "Enter the information carefuly and try again OR user with email already exist",
         });
       } finally {
         this.loading = false;
@@ -330,9 +319,7 @@ export default {
   mounted() {
     this.getManagershandler();
   },
-  computed: {
-    
-  },
+  computed: {},
 };
 </script>
 <style scoped>

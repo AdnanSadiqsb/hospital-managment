@@ -10,6 +10,8 @@ import Rtl from "@/views/Rtl.vue";
 import SignIn from "@/views/SignIn.vue";
 import SignUp from "@/views/SignUp.vue";
 import Workers from "@/views/Workers.vue";
+import Doctors from "@/views/Doctors.vue";
+import Patients from "@/views/Patients.vue";
 
 const routes = [
   {
@@ -38,6 +40,16 @@ const routes = [
     path: "/mangers",
     name: "Mangers",
     component: Managers,
+  },
+  {
+    path: "/doctors",
+    name: "Doctors",
+    component: Doctors,
+  },
+  {
+    path: "/patients",
+    name: "Patients",
+    component: Patients,
   },
   {
     // path: "/billing",

@@ -5,7 +5,7 @@ let api = null;
 
 function createApi() {
   const axiosInstance = axios.create({
-    baseURL: "https://vecel-practice.vercel.app",
+    baseURL: "https://hms-nu-five.vercel.app",
     headers: {
       Accept: "application/json",
       "Content-Type": "multipart/form-data",
