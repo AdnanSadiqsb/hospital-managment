@@ -1,31 +1,30 @@
-/*
- =========================================================
- * Vue Black Dashboard - v1.1.3
- =========================================================
+/**
+=========================================================
+* Vue Soft UI Dashboard - v3.0.0
+=========================================================
 
- * Product Page: https://www.creative-tim.com/product/black-dashboard
- * Copyright 2024 Creative Tim (http://www.creative-tim.com)
+* Product Page: https://creative-tim.com/product/vue-soft-ui-dashboard
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
 
- =========================================================
+Coded by www.creative-tim.com
 
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+=========================================================
 
- */
-import Vue from "vue";
-import VueRouter from "vue-router";
-import RouterPrefetch from "vue-router-prefetch";
-import App from "./App";
-// TIP: change to import router from "./router/starterRouter"; to start with a clean layout
-import router from "./router/index";
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+*/
 
-import BlackDashboard from "./plugins/blackDashboard";
-import i18n from "./i18n";
-import "./registerServiceWorker";
-Vue.use(BlackDashboard);
-Vue.use(VueRouter);
-Vue.use(RouterPrefetch);
-new Vue({
-  router,
-  i18n,
-  render: (h) => h(App),
-}).$mount("#app");
+import { createApp } from "vue";
+import App from "./App.vue";
+import store from "./store";
+import router from "./router";
+import "./assets/css/nucleo-icons.css";
+import "./assets/css/nucleo-svg.css";
+import SoftUIDashboard from "./soft-ui-dashboard";
+import Notifications from "@kyvg/vue3-notification";
+
+const appInstance = createApp(App);
+appInstance.use(store);
+appInstance.use(Notifications);
+appInstance.use(router);
+appInstance.use(SoftUIDashboard);
+appInstance.mount("#app");
