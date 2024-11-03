@@ -50,7 +50,7 @@
             PAGES
           </h6>
         </li> -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <sidenav-collapse navText="Profile" :to="{ name: 'Profile' }">
             <template #icon>
               <customer-support />
@@ -70,7 +70,7 @@
               <spaceship />
             </template>
           </sidenav-collapse>
-        </li>
+        </li> -->
         <li class="nav-item">
           <div @click="handleLogout" class="nav-link" v-bind="$attrs">
             <div
