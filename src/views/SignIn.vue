@@ -161,7 +161,6 @@ export default {
     async handleLogin() {
       try {
         this.loading = true;
-        // eslint-disable-next-line no-undef
         const response = await axios.post(
           "https://hms-nu-five.vercel.app/auth/login/",
           {

@@ -6,13 +6,6 @@
     >
       <ul class="navbar-nav">
         <li class="nav-item">
-          <sidenav-collapse navText="Dashboard" :to="{ name: 'Dashboard' }">
-            <template #icon>
-              <shop />
-            </template>
-          </sidenav-collapse>
-        </li>
-        <li class="nav-item">
           <sidenav-collapse navText="Doctors" :to="{ name: 'Doctors' }">
             <template #icon>
               <office />
@@ -36,14 +29,11 @@
         </li>
 
         <li class="nav-item">
-          <!-- <sidenav-collapse
-            navText="Virtual Reality"
-            :to="{ name: 'Virtual Reality' }"
-          >
+          <sidenav-collapse navText="Lab" :to="{ name: 'Virtual Reality' }">
             <template #icon>
               <box3d />
             </template>
-          </sidenav-collapse> -->
+          </sidenav-collapse>
         </li>
         <!-- <li class="nav-item">
           <sidenav-collapse navText="RTL" :to="{ name: 'Rtl' }">
@@ -121,7 +111,7 @@
 <script>
 import SidenavCollapse from "./SidenavCollapse.vue";
 // import SidenavCard from "./SidenavCard.vue";
-import Shop from "../../components/Icon/Shop.vue";
+// import Shop from "../../components/Icon/Shop.vue";
 import Office from "../../components/Icon/Office.vue";
 import CreditCard from "../../components/Icon/CreditCard.vue";
 // import Box3d from "../../components/Icon/Box3d.vue";
@@ -145,7 +135,7 @@ export default {
   components: {
     SidenavCollapse,
     // SidenavCard,
-    Shop,
+    // Shop,
     Office,
     CreditCard,
     // Box3d,
