@@ -29,19 +29,32 @@
         </li>
 
         <li class="nav-item">
-          <sidenav-collapse navText="Lab" :to="{ name: 'Virtual Reality' }">
+          <sidenav-collapse navText="Tests" :to="{ name: 'Tests' }">
             <template #icon>
               <box3d />
             </template>
           </sidenav-collapse>
         </li>
-        <!-- <li class="nav-item">
-          <sidenav-collapse navText="RTL" :to="{ name: 'Rtl' }">
+        <li class="nav-item">
+          <sidenav-collapse
+            navText="Lab Invoices"
+            :to="{ name: 'lab-invoices' }"
+          >
             <template #icon>
               <settings />
             </template>
           </sidenav-collapse>
-        </li> -->
+        </li>
+        <li class="nav-item">
+          <sidenav-collapse
+            navText="Generate Reports"
+            :to="{ name: 'Reports' }"
+          >
+            <template #icon>
+              <settings />
+            </template>
+          </sidenav-collapse>
+        </li>
         <!-- <li class="mt-3 nav-item">
           <h6
             class="text-xs ps-4 text-uppercase font-weight-bolder opacity-6"
@@ -139,8 +152,8 @@ export default {
     Office,
     CreditCard,
     // Box3d,
-    CustomerSupport,
-    Document,
+    // CustomerSupport,
+    // Document,
     Spaceship,
     // Settings,
   },

@@ -12,6 +12,10 @@ import SignUp from "@/views/SignUp.vue";
 import Workers from "@/views/Workers.vue";
 import Doctors from "@/views/Doctors.vue";
 import Patients from "@/views/Patients.vue";
+import Tests from "@/views/Tests.vue";
+import LabInvoice from "@/views/LabInvoice.vue";
+// import Tests from "@/views/Tests.vue";
+import Reports from "../views/Reports.vue";
 
 const routes = [
   {
@@ -25,18 +29,21 @@ const routes = [
     component: Dashboard,
   },
   {
-    // path: "/tables",
-    // name: "Tables",
-    // component: Tables,
-
+    path: "/reports",
+    name: "Reports",
+    component: Reports,
+  },
+  {
+    path: "/lab-invoices",
+    name: "lab-invoices",
+    component: LabInvoice,
+  },
+  {
     path: "/projects",
     name: "Projects",
     component: Projects,
   },
   {
-    // path: "/billing",
-    // name: "Billing",
-    // component: Billing,
     path: "/mangers",
     name: "Mangers",
     component: Managers,
@@ -52,9 +59,11 @@ const routes = [
     component: Patients,
   },
   {
-    // path: "/billing",
-    // name: "Billing",
-    // component: Billing,
+    path: "/tests",
+    name: "Tests",
+    component: Tests,
+  },
+  {
     path: "/OPD",
     name: "OPD",
     component: Workers,
@@ -87,7 +96,6 @@ const routes = [
 ];
 
 const router = createRouter({
-  // eslint-disable-next-line no-undef
   history: createWebHistory(process.env.BASE_URL),
   routes,
   linkActiveClass: "active",

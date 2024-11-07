@@ -93,9 +93,9 @@
           class="row d-flex justify-center"
           style="align-items: last baseline"
         >
-          <div class="col-md-6">
+          <div class="col-md-10">
             <label for="inputField">Select Patient</label>
-            <div class="dropdown-container">
+            <div class="dropdown-container" style="max-width: 500px">
               <div class="dropdown-header" @click="toggleDropdown">
                 {{ selectedPatient ? selectedPatientName : "Select Patient" }}
               </div>
@@ -122,13 +122,13 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-2">
             <soft-button-vue
               size="small"
               :loading="loading"
               @click="openPatientModal"
             >
-              Add Patient
+              <i class="fas fa-plus"></i>
             </soft-button-vue>
           </div>
         </div>
