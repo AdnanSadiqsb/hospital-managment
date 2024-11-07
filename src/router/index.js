@@ -20,8 +20,8 @@ import Reports from "../views/Reports.vue";
 const routes = [
   {
     path: "/",
-    name: "/",
-    component: SignIn,
+    name: "/OPD",
+    component: Workers,
   },
   {
     path: "/dashboard",
